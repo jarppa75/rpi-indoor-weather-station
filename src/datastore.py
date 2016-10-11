@@ -1,26 +1,25 @@
 import logging
-from datetime import datetime
-import time
-from elasticsearch import Elasticsearch
+import thingspeak
 
 
 class DataStore:
 
     logger = logging.getLogger()
-    indexnamepattern = "weatherstation-"
-    elasticsearchclient = None
+    channel = None
 
-    def __init__(self, elasticsearchhost):
-        self.logger.info('Initiating elasticsearch host: ' + elasticsearchhost)
-        self.elasticsearchclient = Elasticsearch(elasticsearchhost)
+    def __init__(self, channel_id, api_write_key):
+        self.logger.info('Initiating thingspeak channel: ' + channel_id)
+        self.channel = thingspeak.Channel(id=channel_id, write_key=api_write_key)
 
     def save_data(self, weatherdata):
-        self.logger.debug('Save weather data to index')
-        indexname = self.indexnamepattern + datetime.today().strftime('%Y.%m.%d')
+        self.logger.debug('Save weather data to store')
 
-        if not self.elasticsearchclient.indices.exists(index=indexname):
-            self.elasticsearchclient.indices.create(index=indexname)
+        try:
+            response = self.channel.update({1: weatherdata.temperature,
+                                            2: weatherdata.humidity,
+                                            3: weatherdata.barometricpressure})
 
-        self.elasticsearchclient.index(index=indexname,
-                                        doc_type="weather",
-                                        body={"temperature": weatherdata.temperature, "humidity": weatherdata.humidity, "barometricpressure": weatherdata.barometricpressure, "timestamp": int(time.time())})
+            self.logger.debug('channel update response: ' + response)
+
+        except Exception as ex:
+            self.logger.error('Channel update failed: ' + ex.message)

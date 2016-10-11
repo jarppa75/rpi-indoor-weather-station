@@ -10,12 +10,13 @@ from sensehatwrapper import SenseHatWrapper
 
 app = Flask(__name__)
 app.config.update(
-    ELASTICSEARCH_HOST='http://localhost:9200'
+    THINGSPEAK_WRITE_KEY="abcd1234",
+    THINGSPEAK_CHANNEL='my_channel'
 )
 app.config.from_envvar('WEATHERSTATION_SETTINGS', silent=True)
 
 logger = logging.getLogger()
-datastore = DataStore(app.config['ELASTICSEARCH_HOST'])
+datastore = DataStore(app.config['THINGSPEAK_CHANNEL'], app.config['THINGSPEAK_WRITE_KEY'])
 sensehat = SenseHatWrapper()
 
 
