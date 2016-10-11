@@ -17,7 +17,7 @@ Install the dependencies for the app:
 
     sudo pip install -r requirements.txt
     
-Create a file named production.py where you define these variable:
+Create a file named production.py where you define these variables:
 
     THINGSPEAK_WRITE_KEY = '<ThingSpeak Write API Key>'
     THINGSPEAK_CHANNEL = '<ThingSpeak channel name>'
