@@ -9,7 +9,7 @@ class DataStore:
 
     def __init__(self, channel_id, api_write_key):
         self.logger.info('Initiating thingspeak channel: ' + channel_id)
-        self.channel = thingspeak.Channel(id=channel_id, write_key=api_write_key)
+        self.channel = thingspeak.Channel(id=channel_id, write_key=api_write_key, timeout=40)
 
     def save_data(self, weatherdata):
         self.logger.debug('Save weather data to store')
