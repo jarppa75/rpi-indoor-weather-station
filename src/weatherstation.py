@@ -9,14 +9,9 @@ from datastore import DataStore
 from sensehatwrapper import SenseHatWrapper
 
 app = Flask(__name__)
-app.config.update(
-    THINGSPEAK_WRITE_KEY="abcd1234",
-    THINGSPEAK_CHANNEL='my_channel'
-)
-app.config.from_envvar('WEATHERSTATION_SETTINGS', silent=True)
 
 logger = logging.getLogger()
-datastore = DataStore(app.config['THINGSPEAK_CHANNEL'], app.config['THINGSPEAK_WRITE_KEY'])
+datastore = DataStore()
 sensehat = SenseHatWrapper()
 
 

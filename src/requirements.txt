@@ -1,5 +1,4 @@
 Flask==0.11
 APScheduler==3.2.0
-thingspeak==0.4.0
 simple-value-object==0.2.1
 gunicorn==19.6.0

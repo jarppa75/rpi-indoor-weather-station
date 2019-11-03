@@ -13,9 +13,9 @@ class SenseHatWrapper:
 
     def get_weather_data(self):
         self.logger.debug('Fetching weather data')
-        return WeatherData(int(self.sensehat.get_temperature()),
-                           int(self.sensehat.get_humidity()),
-                           int(self.sensehat.get_pressure()))
+        return WeatherData(self.sensehat.get_temperature(),
+                           self.sensehat.get_humidity(),
+                           self.sensehat.get_pressure())
 
     def write_data_to_display(self):
         self.logger.debug('Writing weather data to display')
