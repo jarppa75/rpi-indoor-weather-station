@@ -20,5 +20,5 @@ class SenseHatWrapper:
     def write_data_to_display(self):
         self.logger.debug('Writing weather data to display')
         self.sensehat.clear()
-        self.sensehat.show_message(str(int(self.sensehat.get_temperature())) + ' C',
+        self.sensehat.show_message(str(round(self.sensehat.get_temperature(), 1)) + ' C',
                                    text_colour=[28, 225, 239])

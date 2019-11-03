@@ -4,15 +4,15 @@
   <section>
 
     <div class="temperature">
-      <h2>{{ weatherdata.temperature }}<span class="degree-symbol">°</span>C</span></h2>
+      <h2>{{ '%0.1f'| format(weatherdata.temperature|float) }}<span class="degree-symbol">°</span>C</span></h2>
     </div>
 
     <ul>
       <li class="left">
-        <span>{{ weatherdata.humidity }}%</span>
+        <span>{{ '%0.1f'| format(weatherdata.humidity|float) }}%</span>
       </li>
       <li class="right">
-        <span>{{ weatherdata.barometricpressure }} Millibars</span>
+        <span>{{ '%0.1f'| format(weatherdata.barometricpressure|float) }} Millibars</span>
       </li>
     </ul>
 
