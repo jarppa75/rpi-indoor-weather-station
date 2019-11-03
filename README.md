@@ -9,15 +9,13 @@ Will update the LED Matrix and a web interface with data from the Sensors.
 
 Install the Sense Hat and other dependencies by running the the setup script on the Raspberry Pi:
 
+    cd scripts
     ./setup-raspberrypi.sh
     
 Install the dependencies for the app:
 
     sudo pip install -r requirements.txt
     
-Create a file named production.py where you define these variables:
-
-   TBD
 
 ### Run the application
 
